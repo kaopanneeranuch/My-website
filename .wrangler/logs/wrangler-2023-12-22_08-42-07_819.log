@@ -1,0 +1,97 @@
+
+--- 2023-12-22T08:42:07.998Z debug
+🐛 Writing logs to ".wrangler\logs\wrangler-2023-12-22_08-42-07_819.log"
+---
+
+--- 2023-12-22T08:42:07.998Z debug
+Failed to load .env file ".env": Error: ENOENT: no such file or directory, open 'D:\Innovation Club\My-website\.env'
+    at Object.open (node:internal/fs/sync:78:18)
+    at Object.openSync (node:fs:565:17)
+    at Object.readFileSync (node:fs:445:35)
+    at tryLoadDotEnv (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:122671:72)
+    at loadDotEnv (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:122680:12)
+    at C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:146614:20
+    at C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:130116:16
+    at maybeAsyncResult (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:128337:44)
+    at C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:130115:14
+    at C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:128324:22 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\Innovation Club\\My-website\\.env'
+}
+---
+
+--- 2023-12-22T08:42:08.009Z log
+ ⛅️ wrangler 3.17.0 (update available [32m3.22.1[39m)
+[38;2;255;136;0m-------------------------------------------------------[39m
+---
+
+--- 2023-12-22T08:42:08.034Z debug
+No folder available to cache configuration
+---
+
+--- 2023-12-22T08:42:08.034Z debug
+Metrics dispatcher: Posting data {"type":"event","name":"run dev","properties":{"local":true,"usesTypeScript":true}}
+---
+
+--- 2023-12-22T08:42:08.042Z debug
+Failed to load .env file "D:\Innovation Club\My-website\.dev.vars": Error: ENOENT: no such file or directory, open 'D:\Innovation Club\My-website\.dev.vars'
+    at Object.open (node:internal/fs/sync:78:18)
+    at Object.openSync (node:fs:565:17)
+    at Object.readFileSync (node:fs:445:35)
+    at tryLoadDotEnv (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:122671:72)
+    at loadDotEnv (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:122680:12)
+    at getVarsForDev (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:150297:18)
+    at getBindings (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:151219:10)
+    at getBindingsAndAssetPaths (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:151176:20)
+    at getDevReactElement (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:150840:40)
+    at startDev (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:150903:60) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\Innovation Club\\My-website\\.dev.vars'
+}
+---
+
+--- 2023-12-22T08:42:08.043Z log
+Your worker has access to the following bindings:
+- R2 Buckets:
+  - MY_BUCKET: test-r2
+---
+
+--- 2023-12-22T08:42:08.142Z warn
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNo compatibility_date was specified. Using the installed Workers runtime's latest supported date: 2023-10-30.[0m
+
+  Add one to your wrangler.toml file:
+  ```
+  compatibility_date = "2023-10-30"
+  ```
+  or pass it in your terminal:
+  ```
+  --compatibility-date=2023-10-30
+  ```
+  See [4mhttps://developers.cloudflare.com/workers/platform/compatibility-dates/[0m for more information.
+
+
+---
+
+--- 2023-12-22T08:42:08.345Z log
+[2m⎔ Starting local server...[22m
+---
+
+--- 2023-12-22T08:42:08.860Z log
+[2m⎔ Reloading local server...[22m
+---
+
+--- 2023-12-22T08:42:08.881Z error
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mkj/async-io-win32.c++:982: warning: Bind address resolved to multiple addresses.  Only the first address will be used.  If this is incorrect, specify the address numerically.  This may be fixed in the future.; addrs[0].toString() = 127.0.0.1:56599[0m
+
+
+---
+
+--- 2023-12-22T08:42:09.090Z error
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mkj/async-io-win32.c++:982: warning: Bind address resolved to multiple addresses.  Only the first address will be used.  If this is incorrect, specify the address numerically.  This may be fixed in the future.; addrs[0].toString() = 127.0.0.1:56599[0m
+
+
+---

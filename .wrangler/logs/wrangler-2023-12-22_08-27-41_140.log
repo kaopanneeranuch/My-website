@@ -1,0 +1,152 @@
+
+--- 2023-12-22T08:27:41.371Z debug
+🐛 Writing logs to ".wrangler\logs\wrangler-2023-12-22_08-27-41_140.log"
+---
+
+--- 2023-12-22T08:27:41.371Z debug
+Failed to load .env file ".env": Error: ENOENT: no such file or directory, open 'D:\Innovation Club\My-website\.env'
+    at Object.open (node:internal/fs/sync:78:18)
+    at Object.openSync (node:fs:565:17)
+    at Object.readFileSync (node:fs:445:35)
+    at tryLoadDotEnv (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:122671:72)
+    at loadDotEnv (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:122680:12)
+    at C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:146614:20
+    at C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:130116:16
+    at maybeAsyncResult (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:128337:44)
+    at C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:130115:14
+    at C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:128324:22 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\Innovation Club\\My-website\\.env'
+}
+---
+
+--- 2023-12-22T08:27:41.378Z debug
+Checking if domain has Access enabled: dash.cloudflare.com
+---
+
+--- 2023-12-22T08:27:41.378Z debug
+Access switch not cached for: dash.cloudflare.com
+---
+
+--- 2023-12-22T08:27:41.518Z debug
+Caching access switch for: dash.cloudflare.com
+---
+
+--- 2023-12-22T08:27:42.520Z debug
+No folder available to cache configuration
+---
+
+--- 2023-12-22T08:27:42.520Z debug
+-- START CF API REQUEST: GET https://api.cloudflare.com/client/v4/memberships?page=1
+---
+
+--- 2023-12-22T08:27:42.520Z debug
+HEADERS: omitted; set WRANGLER_LOG_SANITIZE=false to include sanitized data
+---
+
+--- 2023-12-22T08:27:42.520Z debug
+INIT: omitted; set WRANGLER_LOG_SANITIZE=false to include sanitized data
+---
+
+--- 2023-12-22T08:27:42.520Z debug
+-- END CF API REQUEST
+---
+
+--- 2023-12-22T08:27:44.495Z debug
+-- START CF API RESPONSE: OK 200
+---
+
+--- 2023-12-22T08:27:44.496Z debug
+HEADERS: omitted; set WRANGLER_LOG_SANITIZE=false to include sanitized data
+---
+
+--- 2023-12-22T08:27:44.496Z debug
+RESPONSE: omitted; set WRANGLER_LOG_SANITIZE=false to include sanitized data
+---
+
+--- 2023-12-22T08:27:44.496Z debug
+-- END CF API RESPONSE
+---
+
+--- 2023-12-22T08:27:44.496Z debug
+-- START CF API REQUEST: GET https://api.cloudflare.com/client/v4/accounts/e3d30f7fe06566a7cb16c9637b5774b7/r2/buckets
+---
+
+--- 2023-12-22T08:27:44.496Z debug
+HEADERS: omitted; set WRANGLER_LOG_SANITIZE=false to include sanitized data
+---
+
+--- 2023-12-22T08:27:44.497Z debug
+INIT: omitted; set WRANGLER_LOG_SANITIZE=false to include sanitized data
+---
+
+--- 2023-12-22T08:27:44.497Z debug
+-- END CF API REQUEST
+---
+
+--- 2023-12-22T08:27:46.331Z debug
+-- START CF API RESPONSE: OK 200
+---
+
+--- 2023-12-22T08:27:46.331Z debug
+HEADERS: omitted; set WRANGLER_LOG_SANITIZE=false to include sanitized data
+---
+
+--- 2023-12-22T08:27:46.331Z debug
+RESPONSE: omitted; set WRANGLER_LOG_SANITIZE=false to include sanitized data
+---
+
+--- 2023-12-22T08:27:46.331Z debug
+-- END CF API RESPONSE
+---
+
+--- 2023-12-22T08:27:46.331Z log
+[
+  {
+    "name": "test-bucket",
+    "creation_date": "2023-11-22T09:46:40.422Z"
+  },
+  {
+    "name": "test-r2",
+    "creation_date": "2023-12-21T16:13:47.153Z"
+  }
+]
+---
+
+--- 2023-12-22T08:27:46.335Z debug
+-- START CF API REQUEST: GET https://api.cloudflare.com/client/v4/user
+---
+
+--- 2023-12-22T08:27:46.335Z debug
+HEADERS: omitted; set WRANGLER_LOG_SANITIZE=false to include sanitized data
+---
+
+--- 2023-12-22T08:27:46.335Z debug
+INIT: omitted; set WRANGLER_LOG_SANITIZE=false to include sanitized data
+---
+
+--- 2023-12-22T08:27:46.335Z debug
+-- END CF API REQUEST
+---
+
+--- 2023-12-22T08:27:47.332Z debug
+-- START CF API RESPONSE: OK 200
+---
+
+--- 2023-12-22T08:27:47.333Z debug
+HEADERS: omitted; set WRANGLER_LOG_SANITIZE=false to include sanitized data
+---
+
+--- 2023-12-22T08:27:47.333Z debug
+RESPONSE: omitted; set WRANGLER_LOG_SANITIZE=false to include sanitized data
+---
+
+--- 2023-12-22T08:27:47.333Z debug
+-- END CF API RESPONSE
+---
+
+--- 2023-12-22T08:27:47.333Z debug
+Metrics dispatcher: Posting data {"type":"event","name":"list r2 buckets","properties":{}}
+---

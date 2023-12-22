@@ -1,0 +1,23 @@
+
+--- 2023-12-22T08:32:04.772Z debug
+🐛 Writing logs to ".wrangler\logs\wrangler-2023-12-22_08-32-04_575.log"
+---
+
+--- 2023-12-22T08:32:04.772Z debug
+Failed to load .env file ".env": Error: ENOENT: no such file or directory, open 'D:\Innovation Club\My-website\.env'
+    at Object.open (node:internal/fs/sync:78:18)
+    at Object.openSync (node:fs:565:17)
+    at Object.readFileSync (node:fs:445:35)
+    at tryLoadDotEnv (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:122671:72)
+    at loadDotEnv (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:122680:12)
+    at C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:146614:20
+    at C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:130116:16
+    at maybeAsyncResult (C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:128337:44)
+    at C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:130115:14
+    at C:\Users\kaopan\AppData\Roaming\npm\node_modules\wrangler\wrangler-dist\cli.js:128324:22 {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'D:\\Innovation Club\\My-website\\.env'
+}
+---
