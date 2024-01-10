@@ -62,9 +62,14 @@
 // https://e3d30f7fe06566a7cb16c9637b5774b7.r2.cloudflarestorage.com/test-r2
 
 export async function onRequest(context) {
-    const obj = await context.env.BUCKET.get('Logo_color.png');
+    // Replace 'Logo_color.png' with the key of the object you want to retrieve
+    const obj = await context.env.BUCKET.get('Logo_color.png', 'arrayBuffer');
+
     if (obj === null) {
-      return new Response('Not found', { status: 404 });
+        return new Response('Not found', { status: 404 });
     }
-    return new Response(obj.body);
-  }
+
+    return new Response(obj, {
+        headers: { 'Content-Type': 'image/png' },
+    });
+}
