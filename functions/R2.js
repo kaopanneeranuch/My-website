@@ -36,11 +36,12 @@
 export async function onRequestGet(context) {
     // Replace 'Logo_color.png' with the key of the object you want to retrieve
     const obj = await context.env.MY_BUCKET.get('Logo_color.png');
-    const body = await obj.arrayBuffer();
 
     if (obj === null) {
         return new Response('Not found', { status: 404 });
     }
+
+    const body = await obj.arrayBuffer();
 
     return new Response(body, {
         headers: { 'Content-Type': 'image/png' },
