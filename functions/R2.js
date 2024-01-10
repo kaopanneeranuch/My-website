@@ -12,6 +12,10 @@
 //     });
 // }
 
+addEventListener('fetch', event => {
+    event.respondWith(onRequestGet({ env: MY_BUCKET }, event.request));
+});
+
 export async function onRequestGet(context, request) {
     try {
         const url = new URL(request.url);
