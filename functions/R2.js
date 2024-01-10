@@ -59,8 +59,10 @@
 //     });
 // }
 
+// https://e3d30f7fe06566a7cb16c9637b5774b7.r2.cloudflarestorage.com/test-r2
+
 export async function onRequest(context) {
-    const obj = await context.env.BUCKET.get('some-key');
+    const obj = await context.env.BUCKET.get('MY_BUCKET');
     if (obj === null) {
       return new Response('Not found', { status: 404 });
     }
