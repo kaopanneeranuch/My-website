@@ -1,41 +1,26 @@
-// const {Storage} = require('@google-cloud/storage');
+// export async function onRequestGet(context) {
+//     const obj = await context.env.MY_BUCKET.get('Logo_color.png');
 
-// const storage = new Storage();
-// async function generateV4ReadSignedUrl(filename) {
-//   // These options will allow temporary read access to the file
-//   const options = {
-//     version: 'v4',
-//     action: 'read',
-//     expires: Date.now() + 15 * 60 * 1000, // 15 minutes
-//   };
+//     if (obj === null) {
+//         return new Response('Not found', { status: 404 });
+//     }
 
-//   // Get a v4 signed URL for reading the file
-//   const [url] = await storage
-//     .bucket('test-r2')
-//     .file(filename)
-//     .getSignedUrl(options);
-
-//   console.log('Generated GET signed URL:');
-//   console.log(url);
-//   console.log('You can use this URL with any user agent, for example:');
-//   console.log(`curl '${url}'`);
-// }
-
-// generateV4ReadSignedUrl('Logo_color.png').catch(console.error); // pass the filename as a parameter
-
-// export async function onRequest(context) {
-//     const url = 'https://pub-0c1c4857f314440c8ad5975a6d7b656a.r2.dev/Logo_color.png';
-//     const response = await fetch(url);
-//     const body = await response.arrayBuffer();
+//     const body = await obj.arrayBuffer();
 
 //     return new Response(body, {
 //         headers: { 'Content-Type': 'image/png' },
 //     });
 // }
 
-export async function onRequestGet(context) {
-    // Replace 'Logo_color.png' with the key of the object you want to retrieve
-    const obj = await context.env.MY_BUCKET.get('Logo_color.png');
+export async function onRequestGet(context, request) {
+    const url = new URL(request.url);
+    const key = url.searchParams.get('key');
+
+    if (!key) {
+        return new Response('Missing key parameter', { status: 400 });
+    }
+
+    const obj = await context.env.MY_BUCKET.get(key);
 
     if (obj === null) {
         return new Response('Not found', { status: 404 });
@@ -44,7 +29,7 @@ export async function onRequestGet(context) {
     const body = await obj.arrayBuffer();
 
     return new Response(body, {
-        headers: { 'Content-Type': 'image/png' },
+        headers: { 'Content-Type': 'image/png' }, // Replace 'image/png' with the correct MIME type of your object
     });
 }
 
