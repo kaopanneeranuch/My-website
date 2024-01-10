@@ -33,43 +33,16 @@
 //     });
 // }
 
-// export async function onRequest(request) {
-//     const url = new URL(request.url);
-//     const filename = url.searchParams.get('photo');
-//     const imageUrl = `https://pub-0c1c4857f314440c8ad5975a6d7b656a.r2.dev/${filename}`;
-
-//     const response = await fetch(imageUrl);
-//     const body = await response.arrayBuffer();
-
-//     return new Response(body, {
-//         headers: { 'Content-Type': 'image/png' },
-//     });
-// }
-
-// export async function onRequest(request) {
-//     const url = new URL(request.url);
-//     const filename = url.pathname.split('/').pop();
-//     const imageUrl = `https://pub-0c1c4857f314440c8ad5975a6d7b656a.r2.dev/${filename}`;
-
-//     const response = await fetch(imageUrl);
-//     const body = await response.arrayBuffer();
-
-//     return new Response(body, {
-//         headers: { 'Content-Type': 'image/png' },
-//     });
-// }
-
-// https://e3d30f7fe06566a7cb16c9637b5774b7.r2.cloudflarestorage.com/test-r2
-
 export async function onRequestGet(context) {
     // Replace 'Logo_color.png' with the key of the object you want to retrieve
-    const obj = await context.env.MY_BUCKET.get('Logo_color.png', 'arrayBuffer');
+    const obj = await context.env.MY_BUCKET.get('Logo_color.png');
+    const body = await obj.arrayBuffer();
 
     if (obj === null) {
         return new Response('Not found', { status: 404 });
     }
 
-    return new Response(obj, {
+    return new Response(body, {
         headers: { 'Content-Type': 'image/png' },
     });
 }
