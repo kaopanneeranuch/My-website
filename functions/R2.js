@@ -33,9 +33,22 @@
 //     });
 // }
 
+// export async function onRequest(request) {
+//     const url = new URL(request.url);
+//     const filename = url.searchParams.get('photo');
+//     const imageUrl = `https://pub-0c1c4857f314440c8ad5975a6d7b656a.r2.dev/${filename}`;
+
+//     const response = await fetch(imageUrl);
+//     const body = await response.arrayBuffer();
+
+//     return new Response(body, {
+//         headers: { 'Content-Type': 'image/png' },
+//     });
+// }
+
 export async function onRequest(request) {
     const url = new URL(request.url);
-    const filename = url.searchParams.get('photo');
+    const filename = url.pathname.split('/').pop();
     const imageUrl = `https://pub-0c1c4857f314440c8ad5975a6d7b656a.r2.dev/${filename}`;
 
     const response = await fetch(imageUrl);
