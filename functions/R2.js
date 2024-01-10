@@ -20,15 +20,13 @@ export async function onRequestGet(context, request) {
         return new Response('Missing key parameter', { status: 400 });
     }
 
-    const obj = await context.env.MY_BUCKET.get(key);
+    const obj = await context.env.MY_BUCKET.get(key, 'arrayBuffer');
 
     if (obj === null) {
         return new Response('Not found', { status: 404 });
     }
 
-    const body = await obj.arrayBuffer();
-
-    return new Response(body, {
+    return new Response(obj, {
         headers: { 'Content-Type': 'image/png' }, // Replace 'image/png' with the correct MIME type of your object
     });
 }
