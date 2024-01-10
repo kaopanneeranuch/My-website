@@ -13,22 +13,26 @@
 // }
 
 export async function onRequestGet(context, request) {
-    const url = new URL(request.url);
-    const key = url.searchParams.get('key');
+    try {
+        const url = new URL(request.url);
+        const key = url.searchParams.get('key');
 
-    if (!key) {
-        return new Response('Missing key parameter', { status: 400 });
+        if (!key) {
+            return new Response('Missing key parameter', { status: 400 });
+        }
+
+        const obj = await context.env.MY_BUCKET.get(key, 'arrayBuffer');
+
+        if (obj === null) {
+            return new Response('Not found', { status: 404 });
+        }
+
+        return new Response(obj, {
+            headers: { 'Content-Type': 'image/png' },
+        });
+    } catch (error) {
+        return new Response(`Error: ${error.message}`, { status: 500 });
     }
-
-    const obj = await context.env.MY_BUCKET.get(key, 'arrayBuffer');
-
-    if (obj === null) {
-        return new Response('Not found', { status: 404 });
-    }
-
-    return new Response(obj, {
-        headers: { 'Content-Type': 'image/png' }, // Replace 'image/png' with the correct MIME type of your object
-    });
 }
 
 // export async function onRequestPost(context, request) {
