@@ -61,9 +61,9 @@
 
 // https://e3d30f7fe06566a7cb16c9637b5774b7.r2.cloudflarestorage.com/test-r2
 
-export async function onRequest(context) {
+export async function onRequestGet(context) {
     // Replace 'Logo_color.png' with the key of the object you want to retrieve
-    const obj = await context.env.BUCKET.get('Logo_color.png', 'arrayBuffer');
+    const obj = await context.env.MY_BUCKET.get('Logo_color.png', 'arrayBuffer');
 
     if (obj === null) {
         return new Response('Not found', { status: 404 });
@@ -73,3 +73,20 @@ export async function onRequest(context) {
         headers: { 'Content-Type': 'image/png' },
     });
 }
+
+// export async function onRequestPost(context, request) {
+//     const file = await request.arrayBuffer();
+//     const filename = 'your_file_name.png'; // Replace with your file name
+
+//     await context.env.BUCKET.put(filename, file, { contentType: 'image/png' }); // Replace 'image/png' with your file's MIME type
+
+//     return new Response('File uploaded successfully', { status: 200 });
+// }
+
+// export async function onRequestDelete(context) {
+//     const filename = 'Logo_color.png'; // Replace with the key of the object you want to delete
+
+//     await context.env.BUCKET.delete(filename);
+
+//     return new Response('File deleted successfully', { status: 200 });
+// }
