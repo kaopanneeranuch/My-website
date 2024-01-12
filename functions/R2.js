@@ -102,7 +102,7 @@ export async function onRequestGet(context) {
         });
     } catch (error) {
         // return new Response(`Error: ${error.message} + ${JSON.stringify(context)}`, { status: 500 });
-        return new Response(`Error: ${error.message} + ${JSON.stringify(context)}`, { status: 500 });
+        return new Response(`Error: ${error.message} + ${context.params}`, { status: 500 });
     }
 }
 
