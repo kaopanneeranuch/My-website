@@ -38,15 +38,17 @@ addEventListener('fetch', event => {
 });
 
 // addEventListener('fetch', event => {
-//     const request = event.request;
-//     if (request.method === 'GET') {
-//         event.respondWith(onRequestGet(request));
-//     } else if (request.method === 'POST') {
-//         event.respondWith(onRequestPost(request));
-//     } else if (request.method === 'DELETE') {
-//         event.respondWith(onRequestDelete(request));
+//     const url = new URL(event.request.url);
+//     const path = url.pathname;
+
+//     if (path === '/get') {
+//         event.respondWith(onRequestGet(event.request));
+//     } else if (path === '/post') {
+//         event.respondWith(onRequestPost(event.request));
+//     } else if (path === '/delete') {
+//         event.respondWith(onRequestDelete(event.request));
 //     } else {
-//         event.respondWith(new Response('Invalid request method', { status: 405 }));
+//         event.respondWith(new Response('Invalid path', { status: 404 }));
 //     }
 // });
 
