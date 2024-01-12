@@ -56,7 +56,8 @@ addEventListener('fetch', event => {
     const url = new URL(event.request.url);
     const path = url.pathname;
 
-    if (path === '/get' && event.request.method === 'GET') {
+    if (path === '/get') {
+        return new Response(`URL: ${url}`, { status: 500 });
         event.respondWith(onRequestGet(event.request));
     } else if (path === '/post' && event.request.method === 'POST') {
         event.respondWith(onRequestPost(event.request));
@@ -140,6 +141,7 @@ export async function onRequestGet(context) {
 //         return new Response(`Error: ${error.message} + ${request.url}`, { status: 500 });
 //     }
 // }
+
 // export async function onRequestDelete(context) {
 //     try {
 //         const url = new URL(context.request.url);
@@ -149,17 +151,10 @@ export async function onRequestGet(context) {
 //             return new Response('Missing key parameter', { status: 400 });
 //         }
 
-//         const obj = await context.env.MY_BUCKET.get(key);
+//         await context.env.MY_BUCKET.delete(key);
 
-//         if (obj === null) {
-//             return new Response('Not found', { status: 404 });
-//         }
+//         return new Response('File deleted successfully', { status: 200 });
 
-//         const body = await obj.arrayBuffer();
-
-//         return new Response(body, {
-//             headers: { 'Content-Type': 'image/png' },
-//         });
 //     } catch (error) {
 //         return new Response(`Error: ${error.message} + ${context.request.url}`, { status: 500 });
 //         // return new Response(`Error: ${error.message} + ${json[params]}`, { status: 500 });
