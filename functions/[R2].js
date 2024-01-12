@@ -17,12 +17,18 @@ export async function onRequestGet(context) {
 }
 
 export async function onRequestPost(context, request) {
-    const file = await request.arrayBuffer();
-    const filename = 'your_file_name.png'; // Replace with your file name
+    try{
+        const url = new URL(request.url);
+        const key = url.searchParams.get('key');
+        const file = await request.arrayBuffer();
+        const filename = '${key}.png';
 
-    await context.env.BUCKET.put(filename, file, { contentType: 'image/png' }); // Replace 'image/png' with your file's MIME type
+        await context.env.BUCKET.put(filename, file, { contentType: 'image/png' }); // Replace 'image/png' with your file's MIME type
 
-    return new Response('File uploaded successfully', { status: 200 });
+        return new Response('File uploaded successfully', { status: 200 }); 
+    } catch (error) {
+        return new Response(`Error: ${error.message}`, { status: 500 });
+    }
 }
 
 export async function onRequestDelete(context) {
@@ -46,14 +52,14 @@ addEventListener('fetch', event => {
     const url = new URL(event.request.url);
     const path = url.pathname;
 
-    if (path === '/get') {
+    if (path === '/get' && event.request.method === 'GET') {
         event.respondWith(onRequestGet(event.request));
-    } else if (path === '/post') {
+    } else if (path === '/post' && event.request.method === 'POST') {
         event.respondWith(onRequestPost(event.request));
-    } else if (path === '/delete') {
+    } else if (path === '/delete' && event.request.method === 'DELETE') {
         event.respondWith(onRequestDelete(event.request));
     } else {
-        event.respondWith(new Response('Invalid path', { status: 404 }));
+        event.respondWith(new Response('Invalid path or method', { status: 404 }));
     }
 });
 
