@@ -52,7 +52,6 @@ addEventListener('fetch', event => {
 
 export async function onRequestGet(request) {
     try {
-        console.log(request.url)
         const url = new URL(request.url);
         const key = url.searchParams.get('key');
 
@@ -72,7 +71,7 @@ export async function onRequestGet(request) {
             headers: { 'Content-Type': 'image/png' },
         });
     } catch (error) {
-        return new Response(`Error: ${error.message} + ${request.url} + ${key}`, { status: 500 });
+        return new Response(`Error: ${error.message} + ${request.url}`, { status: 500 });
     }
 }
 
