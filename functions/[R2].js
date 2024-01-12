@@ -32,11 +32,15 @@
 // }
 
 export async function onRequestDelete(context) {
-    const filename = 'Logo_color.png'; // Replace with the key of the object you want to delete
+    try{
+        const filename = 'Logo_color.png'; // Replace with the key of the object you want to delete
 
-    await context.env.BUCKET.delete(filename);
+        await context.env.BUCKET.delete(filename);
 
-    return new Response('File deleted successfully', { status: 200 });
+        return new Response('File deleted successfully', { status: 200 });
+    } catch (error) {
+        return new Response(`Error: ${error.message}`, { status: 500 });
+    }
 }
 
 // addEventListener('fetch', event => {
