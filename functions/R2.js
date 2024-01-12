@@ -1,16 +1,16 @@
-// export async function onRequestGet(context) {
-//     const obj = await context.env.MY_BUCKET.get('Logo_color.png');
+export async function onRequestGet(context) {
+    const obj = await context.env.MY_BUCKET.get('Logo_color.png');
 
-//     if (obj === null) {
-//         return new Response('Not found', { status: 404 });
-//     }
+    if (obj === null) {
+        return new Response('Not found', { status: 404 });
+    }
 
-//     const body = await obj.arrayBuffer();
+    const body = await obj.arrayBuffer();
 
-//     return new Response(body, {
-//         headers: { 'Content-Type': 'image/png' },
-//     });
-// }
+    return new Response(body, {
+        headers: { 'Content-Type': 'image/png' },
+    });
+}
 
 // export async function onRequestPost(context, request) {
 //     const file = await request.arrayBuffer();
@@ -29,9 +29,9 @@
 //     return new Response('File deleted successfully', { status: 200 });
 // }
 
-addEventListener('fetch', event => {
-    event.respondWith(onRequestGet(event.request));
-});
+// addEventListener('fetch', event => {
+//     event.respondWith(onRequestGet(event.request));
+// });
 
 // addEventListener('fetch', event => {
 //     const request = event.request;
@@ -46,31 +46,31 @@ addEventListener('fetch', event => {
 //     }
 // });
 
-export async function onRequestGet(request) {
-    try {
-        console.log(request.url)
-        const url = new URL(request.url);
-        const key = url.searchParams.get('key');
+// export async function onRequestGet(request) {
+//     try {
+//         console.log(request.url)
+//         const url = new URL(request.url);
+//         const key = url.searchParams.get('key');
 
-        if (!key) {
-            return new Response('Missing key parameter', { status: 400 });
-        }
+//         if (!key) {
+//             return new Response('Missing key parameter', { status: 400 });
+//         }
 
-        const obj = await MY_BUCKET.get(key);
+//         const obj = await MY_BUCKET.get(key);
 
-        if (obj === null) {
-            return new Response('Not found', { status: 404 });
-        }
+//         if (obj === null) {
+//             return new Response('Not found', { status: 404 });
+//         }
 
-        const body = await obj.arrayBuffer();
+//         const body = await obj.arrayBuffer();
 
-        return new Response(body, {
-            headers: { 'Content-Type': 'image/png' },
-        });
-    } catch (error) {
-        return new Response(`Error: ${error.message}`, { status: 500 });
-    }
-}
+//         return new Response(body, {
+//             headers: { 'Content-Type': 'image/png' },
+//         });
+//     } catch (error) {
+//         return new Response(`Error: ${error.message}`, { status: 500 });
+//     }
+// }
 
 // export async function onRequestPost(request) {
 //     try {
