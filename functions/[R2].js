@@ -31,13 +31,13 @@ export async function onRequestPost(context, request) {
     }
 }
 
-export async function onRequestDelete(context) {
-    const filename = 'Logo_color.png'; // Replace with the key of the object you want to delete
+// export async function onRequestDelete(context) {
+//     const filename = 'Logo_color.png'; // Replace with the key of the object you want to delete
 
-    await context.env.BUCKET.delete(filename);
+//     await context.env.BUCKET.delete(filename);
 
-    return new Response('File deleted successfully', { status: 200 });
-}
+//     return new Response('File deleted successfully', { status: 200 });
+// }
 
 // addEventListener('fetch', event => {
 //     const request = event.request;
@@ -106,19 +106,19 @@ addEventListener('fetch', event => {
 //     }
 // }
 
-// export async function onRequestDelete(request) {
-//     try {
-//         const url = new URL(request.url);
-//         const filename = url.searchParams.get('key');
+export async function onRequestDelete(context, request) {
+    try {
+        const url = new URL(request.url);
+        const key = url.searchParams.get('key');
 
-//         if (!filename) {
-//             return new Response('Missing key parameter', { status: 400 });
-//         }
+        if (!key) {
+            return new Response('Missing key parameter', { status: 400 });
+        }
 
-//         await MY_BUCKET.delete(filename);
+        await context.env.BUCKET.delete(`${key}.png`);
 
-//         return new Response('File deleted successfully', { status: 200 });
-//     } catch (error) {
-//         return new Response(`Error: ${error.message}`, { status: 500 });
-//     }
-// }
+        return new Response('File deleted successfully', { status: 200 });
+    } catch (error) {
+        return new Response(`Error: ${error.message}`, { status: 500 });
+    }
+}
