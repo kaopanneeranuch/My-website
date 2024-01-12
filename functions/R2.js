@@ -81,7 +81,6 @@ addEventListener('fetch', event => {
 });
 
 export async function onRequestGet(context) {
-    // json = JSON.parse(context);
     try {
         const url = new URL(context.request.url);
         const key = url.searchParams.get('key');
@@ -91,7 +90,6 @@ export async function onRequestGet(context) {
         }
 
         const obj = await context.env.MY_BUCKET.get(key);
-        // const obj = await MY_BUCKET.get(key);
 
         if (obj === null) {
             return new Response('Not found', { status: 404 });
