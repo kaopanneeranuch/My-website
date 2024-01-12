@@ -81,6 +81,7 @@ addEventListener('fetch', event => {
 });
 
 export async function onRequestGet(context) {
+    json = JSON.parse(context);
     try {
         const url = new URL(context.url);
         const key = url.searchParams.get('key');
@@ -102,7 +103,7 @@ export async function onRequestGet(context) {
         });
     } catch (error) {
         // return new Response(`Error: ${error.message} + ${JSON.stringify(context)}`, { status: 500 });
-        return new Response(`Error: ${error.message} + ${context.params}`, { status: 500 });
+        return new Response(`Error: ${error.message} + ${json[params]}`, { status: 500 });
     }
 }
 
