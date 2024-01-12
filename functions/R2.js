@@ -18,6 +18,7 @@ addEventListener('fetch', event => {
 
 export async function onRequestGet(request) {
     try {
+        console.log(request.url)
         const url = new URL(request.url);
         const key = url.searchParams.get('key');
 
