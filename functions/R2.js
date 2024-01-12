@@ -1,15 +1,19 @@
 export async function onRequestGet(context) {
-    const obj = await context.env.MY_BUCKET.get('Logo_color.png');
+    try {
+        const obj = await context.env.MY_BUCKET.get('Logo_color.png');
 
-    if (obj === null) {
-        return new Response('Not found', { status: 404 });
+        if (obj === null) {
+            return new Response('Not found', { status: 404 });
+        }
+
+        const body = await obj.arrayBuffer();
+
+        return new Response(body, {
+            headers: { 'Content-Type': 'image/png' },
+        });
+    } catch (error) {
+        return new Response(`Error: ${error.message}`, { status: 500 });
     }
-
-    const body = await obj.arrayBuffer();
-
-    return new Response(body, {
-        headers: { 'Content-Type': 'image/png' },
-    });
 }
 
 // export async function onRequestPost(context, request) {
