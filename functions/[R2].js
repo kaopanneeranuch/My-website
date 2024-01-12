@@ -41,6 +41,7 @@ addEventListener('fetch', event => {
         event.respondWith(new Response('Invalid request method', { status: 405 }));
     }
 });
+
 // addEventListener('fetch', event => {
 //     const url = new URL(event.request.url);
 //     const path = url.pathname;
@@ -58,6 +59,10 @@ addEventListener('fetch', event => {
 
 export async function onRequestGet(request) {
     try {
+        if (!request || !request.url) {
+            return new Response('Invalid request', { status: 400 });
+        }
+
         const url = new URL(request.url);
         const key = url.searchParams.get('key');
 
