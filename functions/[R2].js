@@ -34,9 +34,13 @@
 // }
 
 addEventListener('fetch', event => {
-    event.respondWith(onRequestGet(event.request));
+    const request = event.request;
+    if (request.method === 'GET') {
+        event.respondWith(onRequestGet(request));
+    } else {
+        event.respondWith(new Response('Invalid request method', { status: 405 }));
+    }
 });
-
 // addEventListener('fetch', event => {
 //     const url = new URL(event.request.url);
 //     const path = url.pathname;
