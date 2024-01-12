@@ -80,9 +80,9 @@ addEventListener('fetch', event => {
     }
 });
 
-export async function onRequestGet(request) {
+export async function onRequestGet(context) {
     try {
-        const url = new URL(request.url);
+        const url = new URL(context.url);
         const key = url.searchParams.get('key');
 
         if (!key) {
@@ -101,7 +101,8 @@ export async function onRequestGet(request) {
             headers: { 'Content-Type': 'image/png' },
         });
     } catch (error) {
-        return new Response(`Error: ${error.message} + ${JSON.stringify(request)}`, { status: 500 });
+        // return new Response(`Error: ${error.message} + ${JSON.stringify(context)}`, { status: 500 });
+        return new Response(`Error: ${error.message} + ${JSON.stringify(context)}`, { status: 500 });
     }
 }
 
