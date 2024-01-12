@@ -90,7 +90,8 @@ export async function onRequestGet(context) {
             return new Response('Missing key parameter', { status: 400 });
         }
 
-        const obj = await MY_BUCKET.get(key);
+        const obj = await context.env.MY_BUCKET.get(key);
+        // const obj = await MY_BUCKET.get(key);
 
         if (obj === null) {
             return new Response('Not found', { status: 404 });
