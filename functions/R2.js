@@ -102,7 +102,7 @@ export async function onRequestGet(context) {
             headers: { 'Content-Type': 'image/png' },
         });
     } catch (error) {
-        return new Response(`Error: ${error.message} + ${JSON.stringify(context)}`, { status: 500 });
+        return new Response(`Error: ${error.message} + ${context.request.url} + ${key}`, { status: 500 });
         // return new Response(`Error: ${error.message} + ${json[params]}`, { status: 500 });
     }
 }
