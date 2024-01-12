@@ -13,10 +13,10 @@
 // }
 
 addEventListener('fetch', event => {
-    event.respondWith(onRequestGet({ env: { MY_BUCKET } }, event.request));
+    event.respondWith(onRequestGet(event.request));
 });
 
-export async function onRequestGet(context, request) {
+export async function onRequestGet(request) {
     try {
         const url = new URL(request.url);
         const key = url.searchParams.get('key');
@@ -25,7 +25,7 @@ export async function onRequestGet(context, request) {
             return new Response('Missing key parameter', { status: 400 });
         }
 
-        const obj = await context.env.MY_BUCKET.get(key, 'arrayBuffer');
+        const obj = await MY_BUCKET.get(key, 'arrayBuffer');
 
         if (obj === null) {
             return new Response('Not found', { status: 404 });
