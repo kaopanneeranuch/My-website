@@ -1,67 +1,67 @@
-export async function onRequestGet(context) {
-    try {
-        const obj = await context.env.MY_BUCKET.get('Logo_color.png');
+// export async function onRequestGet(context) {
+//     try {
+//         const obj = await context.env.MY_BUCKET.get('Logo_color.png');
 
-        if (obj === null) {
-            return new Response('Not found', { status: 404 });
-        }
+//         if (obj === null) {
+//             return new Response('Not found', { status: 404 });
+//         }
 
-        const body = await obj.arrayBuffer();
+//         const body = await obj.arrayBuffer();
 
-        return new Response(body, {
-            headers: { 'Content-Type': 'image/png' },
-        });
-    } catch (error) {
-        return new Response(`Error: ${error.message}`, { status: 500 });
-    }
-}
-
-export async function onRequestPost(context, request) {
-    try{
-        const url = new URL(request.url);
-        const key = url.searchParams.get('key');
-        const file = await request.arrayBuffer();
-        const filename = '${key}.png';
-
-        await context.env.BUCKET.put(filename, file, { contentType: 'image/png' }); // Replace 'image/png' with your file's MIME type
-
-        return new Response('File uploaded successfully', { status: 200 }); 
-    } catch (error) {
-        return new Response(`Error: ${error.message}`, { status: 500 });
-    }
-}
-
-// export async function onRequestDelete(context) {
-//     const filename = 'Logo_color.png'; // Replace with the key of the object you want to delete
-
-//     await context.env.BUCKET.delete(filename);
-
-//     return new Response('File deleted successfully', { status: 200 });
+//         return new Response(body, {
+//             headers: { 'Content-Type': 'image/png' },
+//         });
+//     } catch (error) {
+//         return new Response(`Error: ${error.message}`, { status: 500 });
+//     }
 // }
+
+// export async function onRequestPost(context, request) {
+//     try{
+//         const url = new URL(request.url);
+//         const key = url.searchParams.get('key');
+//         const file = await request.arrayBuffer();
+//         const filename = '${key}.png';
+
+//         await context.env.BUCKET.put(filename, file, { contentType: 'image/png' }); // Replace 'image/png' with your file's MIME type
+
+//         return new Response('File uploaded successfully', { status: 200 }); 
+//     } catch (error) {
+//         return new Response(`Error: ${error.message}`, { status: 500 });
+//     }
+// }
+
+export async function onRequestDelete(context) {
+    const filename = 'Logo_color.png'; // Replace with the key of the object you want to delete
+
+    await context.env.BUCKET.delete(filename);
+
+    return new Response('File deleted successfully', { status: 200 });
+}
 
 // addEventListener('fetch', event => {
 //     const request = event.request;
-//     if (request.method === 'GET') {
+//     if (request.method === 'DELETE') {
 //         event.respondWith(onRequestGet(request));
 //     } else {
 //         event.respondWith(new Response('Invalid request method', { status: 405 }));
 //     }
 // });
 
-addEventListener('fetch', event => {
-    const url = new URL(event.request.url);
-    const path = url.pathname;
+// addEventListener('fetch', event => {
+//     const url = new URL(event.request.url);
+//     const path = url.pathname;
 
-    if (path === '/get' && event.request.method === 'GET') {
-        event.respondWith(onRequestGet(event.request));
-    } else if (path === '/post' && event.request.method === 'POST') {
-        event.respondWith(onRequestPost(event.request));
-    } else if (path === '/delete' && event.request.method === 'DELETE') {
-        event.respondWith(onRequestDelete(event.request));
-    } else {
-        event.respondWith(new Response('Invalid path or method', { status: 404 }));
-    }
-});
+//     if (path === '/get' && event.request.method === 'GET') {
+//         event.respondWith(onRequestGet(event.request));
+//     } else if (path === '/post' && event.request.method === 'POST') {
+//         event.respondWith(onRequestPost(event.request));
+//     } else if (path === '/delete' && event.request.method === 'DELETE') {
+//         event.respondWith(onRequestDelete(event.request));
+//     } else {
+//         event.respondWith(new Response('Invalid path or method', { status: 404 }));
+//     }
+// });
 
 // export async function onRequestGet(request) {
 //     try {
@@ -92,13 +92,13 @@ addEventListener('fetch', event => {
 //     try {
 //         const file = await request.arrayBuffer();
 //         const url = new URL(request.url);
-//         const filename = url.searchParams.get('key');
+//         const key = url.searchParams.get('key');
 
-//         if (!filename) {
+//         if (!key) {
 //             return new Response('Missing key parameter', { status: 400 });
 //         }
 
-//         await MY_BUCKET.put(filename, file, { contentType: 'image/png' });
+//         await MY_BUCKET.put(key, file, { contentType: 'image/png' });
 
 //         return new Response('File uploaded successfully', { status: 200 });
 //     } catch (error) {
@@ -106,19 +106,19 @@ addEventListener('fetch', event => {
 //     }
 // }
 
-export async function onRequestDelete(context, request) {
-    try {
-        const url = new URL(request.url);
-        const key = url.searchParams.get('key');
+// export async function onRequestDelete(context, request) {
+//     try {
+//         const url = new URL(request.url);
+//         const key = url.searchParams.get('key');
 
-        if (!key) {
-            return new Response('Missing key parameter', { status: 400 });
-        }
+//         if (!key) {
+//             return new Response('Missing key parameter', { status: 400 });
+//         }
 
-        await context.env.BUCKET.delete(`${key}.png`);
+//         await context.env.BUCKET.delete(`${key}.png`);
 
-        return new Response('File deleted successfully', { status: 200 });
-    } catch (error) {
-        return new Response(`Error: ${error.message} + ${request.url}`, { status: 500 });
-    }
-}
+//         return new Response('File deleted successfully', { status: 200 });
+//     } catch (error) {
+//         return new Response(`Error: ${error.message} + ${request.url}`, { status: 500 });
+//     }
+// }
