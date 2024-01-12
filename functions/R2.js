@@ -88,7 +88,7 @@ export async function onRequestGet(request) {
             headers: { 'Content-Type': 'image/png' },
         });
     } catch (error) {
-        return new Response(`Error: ${error.message} + ${request.url}`, { status: 500 });
+        return new Response(`Error: ${error.message} + ${request}`, { status: 500 });
     }
 }
 
