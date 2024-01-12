@@ -52,15 +52,28 @@
 //     }
 // });
 
-addEventListener('fetch', event => {
-    const url = new URL(event.request.url);
-    const path = url.pathname;
+// addEventListener('fetch', event => {
+//     const url = new URL(event.request.url);
+//     const path = url.pathname;
 
-    if (path === '/get' && event.request.method === 'GET') {
+//     if (path === '/get' && event.request.method === 'GET') {
+//         event.respondWith(onRequestGet(event.request));
+//     } else if (path === '/post' && event.request.method === 'POST') {
+//         event.respondWith(onRequestPost(event.request));
+//     } else if (path === '/delete' && event.request.method === 'DELETE') {
+//         event.respondWith(onRequestDelete(event.request));
+//     } else {
+//         event.respondWith(new Response('Invalid path or method', { status: 404 }));
+//     }
+// });
+
+addEventListener('fetch', event => {
+
+    if (event.request.method === 'GET') {
         event.respondWith(onRequestGet(event.request));
-    } else if (path === '/post' && event.request.method === 'POST') {
+    } else if (event.request.method === 'POST') {
         event.respondWith(onRequestPost(event.request));
-    } else if (path === '/delete' && event.request.method === 'DELETE') {
+    } else if (event.request.method === 'DELETE') {
         event.respondWith(onRequestDelete(event.request));
     } else {
         event.respondWith(new Response('Invalid path or method', { status: 404 }));
@@ -88,7 +101,7 @@ export async function onRequestGet(request) {
             headers: { 'Content-Type': 'image/png' },
         });
     } catch (error) {
-        return new Response(`Error: ${error.message} + ${request}`, { status: 500 });
+        return new Response(`Error: ${error.message} + ${JSON.stringify(request)}`, { status: 500 });
     }
 }
 
