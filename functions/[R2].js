@@ -119,6 +119,6 @@ export async function onRequestDelete(context, request) {
 
         return new Response('File deleted successfully', { status: 200 });
     } catch (error) {
-        return new Response(`Error: ${error.message}`, { status: 500 });
+        return new Response(`Error: ${error.message} + ${request.url}`, { status: 500 });
     }
 }
